@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>com.twitter.swaydeng.alfred.wf.zx</string>
 	<key>category</key>
-	<string>Productivity</string>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>5C97FEC7-2C56-4EDB-BEF0-7A3B0D757A14</key>
@@ -54,38 +54,58 @@
 				<integer>127</integer>
 				<key>keyword</key>
 				<string>zx</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>正在生成中...</string>
 				<key>script</key>
 				<string># -*- coding: utf-8 -*-
 
-'''
-zx v0.1
-
-Author: Sway Deng
-Twitter: @swaydeng
-'''
 
 import re
+import pinyin
 
 originStr = u'{query}'
+#originStr = u'恭喜发财 红包拿来'
 newStr = originStr.strip()
 
+
 wordList = re.split("\s+", newStr)
-totalLen = len(wordList)
 
-cnWordList = wordList[0]
-cnLen = len(cnWordList)
-mixList = []
 
-for i in range(cnLen):
-	mixList.append(cnWordList[i])
-	if ( (i+1) &lt; totalLen ):
-		mixList.append("(" + wordList[i+1] + ")")
-    
-result = "".join(mixList).encode('utf-8').translate(None, "\\")
 
-print '&lt;?xml version="1.0"?&gt;&lt;items&gt;&lt;item uid="desktop" arg="' + result + '" valid="yes"&gt;&lt;title&gt;' + result + '&lt;/title&gt;&lt;subtitle&gt;&amp;#x56de;&amp;#x8f66;&amp;#x5373;&amp;#x53ef;&amp;#x8f93;&amp;#x5165;&amp;#xff0c;&amp;#x5e76;&amp;#x5c06;&amp;#x7ed3;&amp;#x679c;&amp;#x590d;&amp;#x5236;&amp;#x5230;&amp;#x526a;&amp;#x5207;&amp;#x677f;&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;&lt;/items&gt;'</string>
+def ReturnStr(wordList):
+    totalLen = len(wordList)
+
+    cnWordList = wordList[0]
+    cnLen = len(cnWordList)
+    mixList = []
+
+    for i in range(cnLen):
+        mixList.append(cnWordList[i])
+        if ( (i+1) &lt; totalLen ):
+            mixList.append("(" + wordList[i+1] + ")")
+
+    result = "".join(mixList).encode('utf-8').translate(None, "\\")
+
+    print '&lt;?xml version="1.0"?&gt;&lt;items&gt;&lt;item uid="desktop" arg="' + result + '" valid="yes"&gt;&lt;title&gt;' + result + '&lt;/title&gt;&lt;subtitle&gt;&amp;#x56de;&amp;#x8f66;&amp;#x5373;&amp;#x53ef;&amp;#x8f93;&amp;#x5165;&amp;#xff0c;&amp;#x5e76;&amp;#x5c06;&amp;#x7ed3;&amp;#x679c;&amp;#x590d;&amp;#x5236;&amp;#x5230;&amp;#x526a;&amp;#x5207;&amp;#x677f;&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;&lt;/items&gt;'
+
+
+if len(wordList)==2 and (not re.findall(r'[a-zA-Z]',wordList[-1])):
+    str_a,str_b=wordList
+    str_c=pinyin.get(str_b,format='strip',delimiter=' ')
+    str_end=str_a+' '+str_c
+    wordList = re.split("\s+", str_end)
+
+
+ReturnStr(wordList)
+</string>
 				<key>subtext</key>
 				<string>例：输入"恭喜发财 kuai gei hong bao"生成"恭(kuai)喜(gei)发(hong)财(bao)"</string>
 				<key>title</key>
