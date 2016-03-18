@@ -32,7 +32,7 @@ zx 是中文**“真相”**的拼音简写，一个基于 [Alfred](http://www.a
 
 > 我假定你了解 Alfred 及 workflow，并且已经安装。
 
-[点此下载](https://raw.githubusercontent.com/swaydeng/zx/master/download/zx.alfredworkflow)，并双击下载的文件进行安装，安装成功后即可使用，很方便。
+[点此下载](https://raw.githubusercontent.com/binai/zx/master/download/zx.alfredworkflow)，并双击下载的文件进行安装，安装成功后即可使用，很方便。
 
 ## 反馈
 
