@@ -69,7 +69,7 @@
 
 
 import re
-import pinyin
+import pypinyin
 
 originStr = u'{query}'
 #originStr = u'恭喜发财 红包拿来'
@@ -99,7 +99,9 @@ def ReturnStr(wordList):
 
 if len(wordList)==2 and (not re.findall(r'[a-zA-Z]',wordList[-1])):
     str_a,str_b=wordList
-    str_c=pinyin.get(str_b,format='strip',delimiter=' ')
+    #str_c=pinyin.get(str_b,format='strip',delimiter=' ')
+    str_c=pypinyin.lazy_pinyin(str_b,style=0)
+    str_c=" ".join(str_c)
     str_end=str_a+' '+str_c
     wordList = re.split("\s+", str_end)
 
