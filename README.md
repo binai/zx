@@ -24,6 +24,9 @@ zx 是中文**“真相”**的拼音简写，一个基于 [Alfred](http://www.a
 <p>
   <img width="702" height="390" src="https://raw.githubusercontent.com/swaydeng/zx/master/screenshot/2.jpg">
 </p>
+<p>
+  <img width="547" height="127" src="https://raw.githubusercontent.com/binai/zx/master/screenshot/3.jpg">
+</p>
 
 ## 下载
 
